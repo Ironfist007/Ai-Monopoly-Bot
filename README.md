@@ -119,7 +119,6 @@ Edit `ai_monopoly_gui.py` to adjust:
 
 - **AI Algorithm**: Expectiminimax implementation for turn-based games with chance
 - **Project**: AI Monopoly Game - Educational demonstration of game-playing AI
-- **Author**: Ironfist007
 
 ## License
 
