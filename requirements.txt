@@ -1,0 +1,13 @@
+# Monopoly Game Requirements
+# This game uses only Python standard library modules:
+# - tkinter (included with Python)
+# - random (included with Python)
+# - math (included with Python)
+
+# No additional packages need to be installed.
+# The game should run with any Python 3.6+ installation that includes tkinter.
+
+# To run the game:
+# python start_game.py
+# or
+# python monopoly_gui.py
