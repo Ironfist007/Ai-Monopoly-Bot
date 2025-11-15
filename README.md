@@ -1,74 +1,126 @@
-# Monopoly Game
+# AI Monopoly Game - Visual AI Battle
 
-This project is a Monopoly game implementation for an Artificial Intelligence lesson. The game includes both an AI-powered automatic mode and an interactive GUI interface for manual play.
+A visual AI-powered Monopoly game where you can watch two intelligent AI players compete against each other using the Expectiminimax algorithm. The game features a responsive 2D Monopoly board with real-time game logging and strategic AI decision-making.
+
+## Features
+
+- **AI vs AI Gameplay**: Watch two AI players make strategic decisions automatically
+- **Visual 2D Board**: Classic 40-space Monopoly board layout with color-coded properties
+- **Real-time Game Log**: Detailed log of all AI decisions, dice rolls, and transactions
+- **Responsive Board**: Dynamically resizes to fit your screen
+- **Property Management**: Full property ownership, rent collection, and buying/selling mechanics
+- **Jail Mechanics**: Proper jail logic with automatic release after 3 turns
+- **Player Tracking**: Real-time display of player positions, balances, and property holdings
+- **Speed Control**: Adjust game speed with a slider to watch at your preferred pace
+- **Pause/Resume**: Pause the game to analyze moves, then resume
+- **Dice Visualization**: Visual representation of dice rolls
 
 ## Game Modes
 
-### 1. Interactive GUI Mode (NEW!)
-- **File**: `monopoly_gui.py` or `start_game.py`
-- **Features**: 
-  - Visual 2D square grid board based on classic Monopoly layout
-  - Interactive dice rolling with visual dice display
-  - Property purchase and rent collection
-  - Real-time player information and game state
-  - Color-coded properties matching traditional Monopoly
-  - Manual gameplay for 2 players
+### AI Automatic Mode (Main)
+- **File**: `ai_monopoly_gui.py`
+- **Start**: `python ai_monopoly_gui.py`
+- Two AI players automatically play against each other
+- Uses Expectiminimax algorithm for intelligent decision-making
+- Watch AI strategically buy properties and manage cash flow
+- Real-time visualization of all game events
 
-### 2. AI Automatic Mode (Original)
-- **File**: `main.py`
-- **Features**:
-  - Automatic gameplay between two AI players
-  - Expectiminimax algorithm implementation
-  - Strategic decision making with utility function evaluation
+## Algorithm: Expectiminimax
 
-## Algorithm
+The AI uses the **Expectiminimax algorithm**, an extension of Minimax that handles probabilistic events:
+- **Decision Nodes**: AI chooses best action (buy/sell/do nothing) to maximize expected utility
+- **Chance Nodes**: Dice rolls (1-6) are evaluated probabilistically
+- **Utility Function**: Evaluates player strength based on:
+  - Property value and rent potential
+  - Current cash balance
+  - Risk assessment (prevents bankruptcy)
+  - Strategic depth (configurable intelligence level)
 
-The algorithm used in this project is Expectiminimax, which is an extension of the Minimax algorithm that can handle uncertain events in the game. In Monopoly, the uncertainty comes from the chance and community chest cards, as well as the dice rolls. The Expectiminimax algorithm considers all possible events and their probabilities, and it chooses the best action that maximizes the expected utility.
+## How to Play (Watch AI)
 
-## Strategies
-
-The implemented strategies in this game are as follows:
-
-- At the beginning of the game, each player buys a property until their cash is in the danger zone. By doing this, the player can take rent from their opponent for each property and bring them one step closer to failure.
-- When the player's cash enters the danger zone, they must try to save their property by selling it. The risk range is the range in which the player may go bankrupt with the next move and lose the game. Determining this range depends on the level of risk tolerance of the players.
-- The cost of renting properties in the game is designed from 50 to 340 dollars, and the average cost of renting each property is 195 dollars. If we define the risk range below $340, the game becomes very cautious. In a reasonable case, this range is considered to be less than 200 dollars so that both players have risk tolerance and don't go too far.
-- When the player gets out of the danger zone and knows that they will not enter this zone by making a move, they start to land their assets so that they can get rent from their opponent.
-- In this strategy, cash is given a different value. At the beginning of the game, when most of the houses are ownerless and the player has a lot of money, they prefer to add to their properties. But at the end of the game, when they feel threatened, they try to keep themselves in the game by selling the property.
-
-Note that by increasing the level of intelligence, the agents can make better decisions, but it takes time.
-
-## Usage
-
-### Running the Interactive GUI Game
+### 1. Start the Game
 ```bash
-python start_game.py
-```
-or
-```bash
-python monopoly_gui.py
+python ai_monopoly_gui.py
 ```
 
-### Running the AI Automatic Game
-```bash
-python main.py
+### 2. Control the AI Battle
+- **Start AI Game**: Begin the automatic AI vs AI match
+- **Game Speed**: Use the slider to control how fast the game plays (0.5x to 5.0x)
+- **Pause**: Pause the game to examine the board and decisions
+- **Resume**: Resume the game from where it was paused
+- **Reset Game**: Start a new game from the beginning
+
+### 3. Watch the Action
+- **Game Log**: See all AI decisions, dice rolls, and property transactions
+- **Board Updates**: Properties change color as players acquire them
+- **Player Info**: Track each AI player's balance, properties, and current position
+- **Dice Roll**: View the current dice result
+
+## Board Layout
+
+- **40 Spaces**: Classic Monopoly arrangement
+- **Corners**: GO, JAIL, FREE PARKING, GO TO JAIL
+- **Property Sides**:
+  - Bottom: Mediterranean Ave to Connecticut Ave (brown to light blue)
+  - Left: St. Charles to New York Ave (pink to orange)
+  - Top: Kentucky to Marvin Gardens (red to yellow)
+  - Right: Pacific to Boardwalk (green to dark blue)
+- **Special Spaces**: Community Chest, Chance, Income Tax, Luxury Tax
+
+## Project Structure
+
 ```
-
-## GUI Game Features
-
-- **Visual Board**: 2D square grid interface with properties arranged like classic Monopoly
-- **Interactive Dice**: Click to roll dice with visual representation
-- **Property Management**: Buy properties, collect rent, and manage your portfolio
-- **Player Tracking**: Real-time display of player positions, balances, and properties
-- **Game Log**: Track all game events and transactions
-- **Turn-based Gameplay**: Proper turn management for 2 players
+.
+├── ai_monopoly_gui.py       # Main AI GUI application
+├── game.py                  # Game logic and flow
+├── node.py                  # Expectiminimax node structure
+├── tree.py                  # Game tree generation and evaluation
+├── player.py                # Player class with properties and balance
+├── property.py              # Property definitions and management
+├── README.md                # This file
+└── requirements.txt         # Python dependencies
+```
 
 ## Requirements
 
-- Python 3.6 or higher
+- Python 3.6+
 - tkinter (included with most Python installations)
-- No additional packages required
+- No external packages required
 
-That's all you need to know to start playing Monopoly! Have fun with both the interactive GUI and AI modes!
+## Game Rules Implemented
 
-##Credits
-This project is created by Saleh Shakour.
+- **Starting Balance**: $1500 per player
+- **Property Purchase**: Players can buy unowned properties they land on
+- **Rent**: Landing on owned property requires paying rent to owner
+- **Go Salary**: $200 for passing or landing on GO
+- **Jail**: Players sent to JAIL at space 30, released after 3 turns or by paying $50
+- **Win Condition**: First player to $2000+ wins, or opponent goes bankrupt
+- **AI Decisions**: Buy properties, sell if in danger, collect rent, manage cash risk
+
+## Configuration
+
+Edit `ai_monopoly_gui.py` to adjust:
+- Initial board size: `initial_board` variable
+- AI intelligence level: `intelligence_level` in `run_ai_game()`
+- Max game moves: `max_moves` variable
+- Starting balance: Modify `Player(0, balance=1500)` calls
+
+## Tips for Watching
+
+1. Start with slower speed (0.5x) to see detailed decisions
+2. Use Pause to read the game log and analyze AI moves
+3. Watch how AI adjusts strategy:
+   - Early game: Aggressive property buying
+   - Mid game: Strategic rent collection
+   - Late game: Cash management and asset positioning
+4. Higher intelligence level = better decisions but slower computation
+
+## Credits
+
+- **AI Algorithm**: Expectiminimax implementation for turn-based games with chance
+- **Project**: AI Monopoly Game - Educational demonstration of game-playing AI
+- **Author**: Ironfist007
+
+## License
+
+Open source - feel free to study, modify, and extend!
