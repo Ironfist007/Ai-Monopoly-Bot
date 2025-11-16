@@ -1,6 +1,6 @@
-# AI Monopoly Game - Visual AI Battle
+# AI Monopoly Game - Pygame AI Battle
 
-A visual AI-powered Monopoly game where you can watch two intelligent AI players compete against each other using the Expectiminimax algorithm. The game features a responsive 2D Monopoly board with real-time game logging and strategic AI decision-making.
+A Pygame-powered visual AI Monopoly game where you can watch two intelligent AI players compete against each other using the Expectiminimax algorithm. The game features a professional 2D Monopoly board with real-time game logging, strategic AI decision-making, and smooth animations.
 
 ## Features
 
@@ -11,15 +11,18 @@ A visual AI-powered Monopoly game where you can watch two intelligent AI players
 - **Property Management**: Full property ownership, rent collection, and buying/selling mechanics
 - **Jail Mechanics**: Proper jail logic with automatic release after 3 turns
 - **Player Tracking**: Real-time display of player positions, balances, and property holdings
-- **Speed Control**: Adjust game speed with a slider to watch at your preferred pace
+- **Speed Control**: Adjust game speed with a slider to watch at your preferred pace (0.2s to 3.0s)
 - **Pause/Resume**: Pause the game to analyze moves, then resume
-- **Dice Visualization**: Visual representation of dice rolls
+- **Scrollable Game Log**: Full game history with mouse/keyboard scrolling
+- **Property Ownership Colors**: Visual property ownership indicators
+- **Smooth Animations**: Professional game piece movement and UI transitions
+- **Dual Panel Layout**: Board view and AI insights panel side-by-side
 
 ## Game Modes
 
 ### AI Automatic Mode (Main)
-- **File**: `ai_monopoly_gui.py`
-- **Start**: `python ai_monopoly_gui.py`
+- **File**: `ai_monopoly_pygame.py`
+- **Start**: `python ai_monopoly_pygame.py`
 - Two AI players automatically play against each other
 - Uses Expectiminimax algorithm for intelligent decision-making
 - Watch AI strategically buy properties and manage cash flow
@@ -40,21 +43,27 @@ The AI uses the **Expectiminimax algorithm**, an extension of Minimax that handl
 
 ### 1. Start the Game
 ```bash
-python ai_monopoly_gui.py
+python ai_monopoly_pygame.py
 ```
 
 ### 2. Control the AI Battle
-- **Start AI Game**: Begin the automatic AI vs AI match
-- **Game Speed**: Use the slider to control how fast the game plays (0.5x to 5.0x)
-- **Pause**: Pause the game to examine the board and decisions
-- **Resume**: Resume the game from where it was paused
-- **Reset Game**: Start a new game from the beginning
+- **START Button**: Begin the automatic AI vs AI match
+- **PAUSE/RESUME Button**: Pause to examine moves, resume to continue
+- **RESET Button**: Start a new game from the beginning
+- **Speed Slider**: Control game pace from 0.2s to 3.0s per move
+- **Game Log Scrolling**: Use mouse wheel or arrow keys to scroll through history
 
 ### 3. Watch the Action
 - **Game Log**: See all AI decisions, dice rolls, and property transactions
-- **Board Updates**: Properties change color as players acquire them
-- **Player Info**: Track each AI player's balance, properties, and current position
-- **Dice Roll**: View the current dice result
+- **Board Updates**: Properties change color as players acquire them  
+- **Player Stats**: Real-time balance, property count, position, and risk assessment
+- **Utility Scores**: AI evaluation scores showing decision quality
+
+### 4. Keyboard Controls
+- **SPACE**: Pause/Resume game
+- **ESC**: Exit game
+- **↑/↓ Arrow Keys**: Scroll game log
+- **Mouse Wheel**: Scroll game log
 
 ## Board Layout
 
@@ -71,21 +80,32 @@ python ai_monopoly_gui.py
 
 ```
 .
-├── ai_monopoly_gui.py       # Main AI GUI application
+├── ai_monopoly_pygame.py    # Main Pygame GUI application
+├── board_config.py          # Board layout and visual configuration
 ├── game.py                  # Game logic and flow
 ├── node.py                  # Expectiminimax node structure
 ├── tree.py                  # Game tree generation and evaluation
 ├── player.py                # Player class with properties and balance
 ├── property.py              # Property definitions and management
+├── .gitignore               # Git ignore file
 ├── README.md                # This file
 └── requirements.txt         # Python dependencies
 ```
 
 ## Requirements
 
-- Python 3.6+
-- tkinter (included with most Python installations)
-- No external packages required
+- Python 3.8+
+- pygame>=2.0.0
+
+Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+Or install pygame directly:
+```bash
+pip install pygame
+```
 
 ## Game Rules Implemented
 
@@ -99,10 +119,11 @@ python ai_monopoly_gui.py
 
 ## Configuration
 
-Edit `ai_monopoly_gui.py` to adjust:
-- Initial board size: `initial_board` variable
-- AI intelligence level: `intelligence_level` in `run_ai_game()`
+Edit `ai_monopoly_pygame.py` to adjust:
+- Board dimensions: `BOARD_WIDTH`, `BOARD_HEIGHT` in `board_config.py`
+- AI intelligence level: `intelligence_level` in `_run_game_loop()`
 - Max game moves: `max_moves` variable
+- Game speed: `self.game_speed` range (0.2 to 3.0 seconds)
 - Starting balance: Modify `Player(0, balance=1500)` calls
 
 ## Tips for Watching
