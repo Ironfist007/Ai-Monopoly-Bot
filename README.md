@@ -7,14 +7,15 @@ A Pygame-powered visual AI Monopoly game where you can watch two intelligent AI 
 - **AI vs AI Gameplay**: Watch two AI players make strategic decisions automatically
 - **Visual 2D Board**: Classic 40-space Monopoly board layout with color-coded properties
 - **Real-time Game Log**: Detailed log of all AI decisions, dice rolls, and transactions
-- **Responsive Board**: Dynamically resizes to fit your screen
+- **Optimized Screen Fit**: Scaled board (740x740) that fits on standard 1080p displays
 - **Property Management**: Full property ownership, rent collection, and buying/selling mechanics
 - **Jail Mechanics**: Proper jail logic with automatic release after 3 turns
-- **Player Tracking**: Real-time display of player positions, balances, and property holdings
+- **Player Tracking**: Real-time display of player positions (Player 1 & 2), balances, and property holdings
 - **Speed Control**: Adjust game speed with a slider to watch at your preferred pace (0.2s to 3.0s)
 - **Pause/Resume**: Pause the game to analyze moves, then resume
-- **Scrollable Game Log**: Full game history with mouse/keyboard scrolling
-- **Property Ownership Colors**: Visual property ownership indicators
+- **Scrollable Game Log**: Full game history with mouse/keyboard scrolling - now scrolls all the way to bottom
+- **Property Prices**: Visible property purchase prices in black text on board
+- **Property Ownership Colors**: Visual property ownership indicators at top of each property
 - **Smooth Animations**: Professional game piece movement and UI transitions
 - **Dual Panel Layout**: Board view and AI insights panel side-by-side
 
@@ -27,6 +28,16 @@ A Pygame-powered visual AI Monopoly game where you can watch two intelligent AI 
 - Uses Expectiminimax algorithm for intelligent decision-making
 - Watch AI strategically buy properties and manage cash flow
 - Real-time visualization of all game events
+
+## Recent Updates (UI Improvements)
+
+### v2.0 - Enhanced User Experience
+- **Optimized Screen Size**: Board scaled from 940x940 to 740x740 pixels for better fit on standard displays
+- **Improved Panel Layout**: Right panel reduced to 420px width for better proportions
+- **Fixed Log Scrolling**: Game log now scrolls smoothly to the very bottom without getting stuck
+- **Better Player Labels**: Display shows "Player 1" and "Player 2" instead of "Player 0" and "Player 1"
+- **Property Prices Visible**: All property purchase prices now display in black text (previously hidden)
+- **Reduced Font Sizes**: Optimized typography for the smaller board while maintaining readability
 
 ## Algorithm: Expectiminimax
 
